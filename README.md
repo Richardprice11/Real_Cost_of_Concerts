@@ -54,3 +54,30 @@ This means the local build cache (`.next` folder) is corrupted or out of date. F
 3. Hard-refresh the browser (Ctrl+Shift+R).
 
 Do **not** run `npm start` unless you ran `npm run build` first.
+
+## Live site (Vercel)
+
+**Production URL:** [https://real-cost-of-concerts.vercel.app](https://real-cost-of-concerts.vercel.app)
+
+The project is deployed on Vercel as `real-cost-of-concerts`. GitHub repo: [Richardprice11/Real_Cost_of_Concerts](https://github.com/Richardprice11/Real_Cost_of_Concerts).
+
+### One-time Supabase auth setup for production
+
+So login works on Vercel (not just localhost):
+
+1. Open [Supabase → Authentication → URL Configuration](https://supabase.com/dashboard/project/jtezizslasitgucybbtd/auth/url-configuration)
+2. Set **Site URL** to: `https://real-cost-of-concerts.vercel.app`
+3. Add **Redirect URLs**:
+   - `https://real-cost-of-concerts.vercel.app/**`
+   - `https://*.vercel.app/**` (optional, for preview deploys)
+4. Save
+
+### Redeploy / env vars
+
+Vercel project settings: [real-cost-of-concerts](https://vercel.com/richard-price-s-projects/real-cost-of-concerts). Environment variables must include `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `TICKETMASTER_API_KEY` for production.
+
+To deploy again from your machine:
+
+```bash
+npx vercel deploy --prod
+```
